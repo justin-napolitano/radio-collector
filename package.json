@@ -2,8 +2,8 @@
   "name": "radio-collector",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "postinstall": "cd web && npm ci",
     "dev": "node server.js",
     "build": "cd web && npm run build",
     "start": "NODE_ENV=production node server.js"
