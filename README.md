@@ -1,72 +1,113 @@
-# Radio Collector (Ad‑free client)
+# Radio Collector
 
-A minimal, ad‑free web app for discovering and playing public internet radio streams. It uses the community-run Radio Browser directory. Runs as a single Docker container on your server.
+Radio Collector is a minimal, ad-free web application for discovering and playing public internet radio streams. It leverages the community-run Radio Browser directory and runs as a single Docker container for easy deployment.
+
+---
 
 ## Features
-- Search by name/genre/country (proxied via `/api/*` to Radio Browser)
-- Favorites stored locally in the browser
-- Clean UI, no tracking, no banners
-- Single container (Node + static React build)
 
-## Quick start
+- Search stations by name, genre, or country
+- Favorites stored locally in the browser
+- Clean, privacy-focused UI with no tracking or ads
+- Single container deployment combining Node.js backend and React frontend
+- Proxy for Radio Browser API to avoid CORS issues
+- Healthcheck endpoint for container monitoring
+
+---
+
+## Tech Stack
+
+- **Backend:** Node.js with Express, http-proxy-middleware, compression, helmet, morgan
+- **Frontend:** React, Vite
+- **Containerization:** Docker, Docker Compose
+- **Proxying:** Configurable reverse proxy support (Traefik, Caddy, Nginx)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+- Node.js >= 18 (for local development)
+
+### Build and Run with Docker
 
 ```bash
-# Build and run with Docker
 docker build -t radio-collector .
 docker run -d --name radio-collector -p 8080:8080 radio-collector
-# Open http://localhost:8080
+# Access the app at http://localhost:8080
 ```
 
-or with Compose:
+### Using Docker Compose
 
 ```bash
 docker compose up -d
 ```
 
-## Environment
+### Development
 
-- `PORT` (default `8080`)
-- `RADIO_BROWSER_BASE` (default `https://de1.api.radio-browser.info`)
-  - You may switch to another mirror from https://api.radio-browser.info/ to suit your region.
+1. Install dependencies in `web` folder:
+
+```bash
+cd web
+npm install
+```
+
+2. Run frontend dev server:
+
+```bash
+npm run dev
+```
+
+3. Run backend server:
+
+```bash
+npm run dev
+```
+
+---
+
+## Project Structure
+
+```
+/
+├── docker-compose.yml            # Docker Compose config for single container
+├── docker-compose.nginx.yml      # Compose config with Nginx reverse proxy
+├── Dockerfile                    # Docker image build instructions
+├── package.json                  # Backend Node.js dependencies and scripts
+├── README.md                    # This file
+├── server.js                    # Express server with API proxy and static serving
+├── reverse-proxy/               # Reverse proxy configs (e.g., nginx.conf)
+├── web/                        # React frontend app
+│   ├── package.json
+│   ├── vite.config.js
+│   └── src/                    # React source code
+└── zz_dockerfile                # (Assumed experimental or legacy Dockerfile)
+```
+
+---
+
+## Configuration
+
+- `PORT`: Port the server listens on (default `8080`)
+- `RADIO_BROWSER_BASE`: Base URL for Radio Browser API mirror (default `https://de1.api.radio-browser.info`)
+
+---
+
+## Future Work / Roadmap
+
+- Add user authentication for syncing favorites across devices
+- Support for additional audio codecs and better browser compatibility
+- Improve UI/UX with more filters and station metadata
+- Add HTTPS support out of the box with automatic certificate management
+- Enhance healthchecks and monitoring integration
+- Container image size optimization
+
+---
 
 ## Notes
 
-- The app **does not** remove audio ads that stations inject into their streams. It only provides an ad‑free UI.
-- Some stations may not play in certain browsers due to codec support (e.g., AAC/OGG) or CORS settings controlled by the station.
-- This container serves static files and proxies only the Radio Browser **API**—it does not relay the audio media.
-
-
-## Healthchecks
-
-- The container exposes `/healthz`. The image includes a Docker **HEALTHCHECK** using `curl`.
-- `docker-compose.yml` also defines a healthcheck you can tweak.
-
-## Reverse proxy options
-
-### Traefik (labels)
-Uncomment and edit the Traefik labels in `docker-compose.yml`:
-```yaml
-labels:
-  - "traefik.enable=true"
-  - "traefik.http.routers.radio-collector.rule=Host(`radio.example.com`)"
-  - "traefik.http.routers.radio-collector.entrypoints=websecure"
-  - "traefik.http.routers.radio-collector.tls.certresolver=letsencrypt"
-  - "traefik.http.services.radio-collector.loadbalancer.server.port=8080"
-```
-
-### Caddy (labels)
-If you use **caddy-docker-proxy**, uncomment and edit:
-```yaml
-labels:
-  - "caddy=radio.example.com"
-  - "caddy.encode=gzip zstd"
-  - "caddy.reverse_proxy={{upstreams 8080}}"
-```
-
-### Nginx (compose override)
-Use the provided `docker-compose.nginx.yml` to run an Nginx proxy in front:
-```bash
-docker compose -f docker-compose.nginx.yml up -d
-# Nginx listens on :80 and forwards to the app on :8080
-```
-To add TLS, bind-mount your certs into `reverse-proxy/certs` and enable the HTTPS server block shown in `reverse-proxy/nginx.conf`.
+- The app does not remove audio ads injected by radio stations.
+- Some streams may not play due to browser codec or CORS restrictions.
+- The backend proxies only the Radio Browser API; audio streams are played directly from their sources.
