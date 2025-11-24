@@ -21,6 +21,13 @@ seoSecondaryKeywords:
   - nodejs backend
   - docker deployment
 seoOptimized: true
+topicFamily: automation
+topicFamilyConfidence: 0.9
+topicFamilyNotes: >-
+  The post focuses on deploying a React and Node.js app using Docker and docker-compose, involving
+  build and deployment automation which fits best under Automation. Other families like devtools are
+  less relevant since the content centers on deployment architecture rather than development
+  environment setup.
 ---
 
 # Radio Collector: Technical Overview and Implementation Notes
@@ -82,3 +89,4 @@ The project uses Docker for containerization:
 Radio Collector is a pragmatic solution for users seeking a straightforward, privacy-conscious internet radio client. Its architecture balances simplicity and functionality, leveraging modern JavaScript tooling and containerization to facilitate deployment and maintenance. The proxy approach effectively mitigates common CORS issues without introducing complex backend logic or state management.
 
 This overview serves as a reference for maintenance, enhancement, or troubleshooting, focusing on the core design decisions and operational aspects observed in the codebase and configuration.
+
