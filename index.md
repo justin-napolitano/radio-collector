@@ -1,12 +1,27 @@
 ---
-slug: "github-radio-collector"
-title: "radio-collector"
-repo: "justin-napolitano/radio-collector"
-githubUrl: "https://github.com/justin-napolitano/radio-collector"
-generatedAt: "2025-11-23T09:31:21.132543Z"
-source: "github-auto"
+slug: github-radio-collector
+title: 'Radio Collector: Ad-Free Internet Radio Client with CORS Proxy'
+repo: justin-napolitano/radio-collector
+githubUrl: https://github.com/justin-napolitano/radio-collector
+generatedAt: '2025-11-23T09:31:21.132543Z'
+source: github-auto
+summary: >-
+  Technical overview of Radio Collector, a lightweight React and Node.js app providing ad-free
+  internet radio with API proxying to resolve CORS issues.
+tags:
+  - react
+  - internet-radio
+  - cors-proxy
+  - docker
+seoPrimaryKeyword: radio collector
+seoSecondaryKeywords:
+  - internet radio
+  - cors proxy
+  - react frontend
+  - nodejs backend
+  - docker deployment
+seoOptimized: true
 ---
-
 
 # Radio Collector: Technical Overview and Implementation Notes
 
