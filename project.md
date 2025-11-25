@@ -7,8 +7,8 @@ githubUrl: https://github.com/justin-napolitano/radio-collector
 generatedAt: '2025-11-24T21:36:08.165Z'
 source: github-auto
 summary: >-
-  Learn how to create a simple, ad-free web app for streaming internet radio
-  using Node.js, React, and Docker.
+  Learn how to create a simple, ad-free web app for streaming internet radio using Node.js, React,
+  and Docker.
 tags:
   - docker
   - node.js
@@ -23,8 +23,8 @@ seoSecondaryKeywords:
   - docker-compose setup
   - proxying audio streams
 seoOptimized: true
-topicFamily: null
-topicFamilyConfidence: null
+topicFamily: automation
+topicFamilyConfidence: 0.9
 kind: project
 entryLayout: project
 showInProjects: true
@@ -144,4 +144,5 @@ npm run dev
 - The app does not remove audio ads injected by radio stations.
 - Some streams may not play due to browser codec or CORS restrictions.
 - The backend proxies only the Radio Browser API; audio streams are played directly from their sources.
+
 
