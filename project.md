@@ -1,19 +1,28 @@
 ---
 slug: github-radio-collector
 id: github-radio-collector
-title: Radio Collector
+title: Build a Minimal Web App for Internet Radio with Docker
 repo: justin-napolitano/radio-collector
 githubUrl: https://github.com/justin-napolitano/radio-collector
 generatedAt: '2025-11-24T21:36:08.165Z'
 source: github-auto
 summary: >-
-  Radio Collector is a minimal, ad-free web application for discovering and
-  playing public internet radio streams. It leverages the community-run Radio
-  Browser directory and runs as a single Docker container for easy deployment.
-tags: []
-seoPrimaryKeyword: ''
-seoSecondaryKeywords: []
-seoOptimized: false
+  Learn how to create a simple, ad-free web app for streaming internet radio
+  using Node.js, React, and Docker.
+tags:
+  - docker
+  - node.js
+  - react
+  - http-proxy-middleware
+  - docker-compose
+seoPrimaryKeyword: internet radio web application
+seoSecondaryKeywords:
+  - docker radio app
+  - node.js streaming app
+  - react radio player
+  - docker-compose setup
+  - proxying audio streams
+seoOptimized: true
 topicFamily: null
 topicFamilyConfidence: null
 kind: project
